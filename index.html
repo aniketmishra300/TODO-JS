@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TODO JS</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    
+<div id="blur" class="blur">
+
+    <div class="app-container">
+        <div class="topBar">
+          <h1>Task Lists</h1>
+          <p id="add-option" class="add-option">
+            <span class="plus"> ➕ </span>
+            Add Item
+          </p>
+        </div>
+
+        <div id="flex_container" class="flex_container">
+            
+        </div>
+
+
+
+    <div id="first_popup" class="first_popup hide">
+        <h3 class="new-list">Add New List</h3>
+        <input type="text" placeholder="Add New List" id="textfield" class="textfield" >
+        <span><button class="firstbtn" onclick="add()">Add</button>
+            <button class="firstbtn" onclick="showpopup()">Close</button>
+        </span>
+    </div>
+
+
+    <div id="first_popup2" class="first_popup2 hide">
+        <h3 class="new-list">Add New Items</h3>
+        <input type="text" placeholder="Add New List" id="textfield2" class="textfield">
+        <span><button class="firstbtn" onclick="additem()">Add</button>
+            <button class="firstbtn" onclick="showpopup2()">Close</button>
+        </span>
+    </div>
+</div>
+    
+   
+    
+    <script src="./script.js"></script>
+</body>
+</html>
