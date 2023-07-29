@@ -153,9 +153,9 @@ hr{
     position: relative;
     top: 25px;
     left: 4px;
-    /* display: flex;
-    justify-content: center;
-    justify-self: center; */
+    font-size: 18px;
+    line-height: 25px;
+    
 }
 
 .addbtn , .delbtn
@@ -167,4 +167,13 @@ hr{
     background-color: red;
     position: relative;
     left: 40px;
+}
+
+.Mark_done
+{
+    background-color: red;
+    border: 1px solid black;
+    border-radius: 8px;
+    padding: 2px;
+    margin: 5px;
 }
