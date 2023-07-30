@@ -3,20 +3,25 @@ let first_popup = document.getElementById("first_popup");
 let addOption = document.getElementById("add-option");
 // let blurdiv = document.getElementById("blur");
 
+let back = document.createElement("h2")
+back.innerHTML = "Back";
+back.style.color = "red"
+console.log(back)
 
 
 let id=1;
-let card_items , card_container , textfield_value, delbtn , cardremove,
-span;
+let card_items , card_container , textfield_value, 
+delbtn , cardremove,span,card_title , flex_container;
 
 function add(){
-    showpopup()
+    hidepopup()
+    
     
     let textfield = document.getElementById("textfield")
     textfield_value = textfield.value;
     // textfield.textContent = "";
     
-    let flex_container = document.getElementById("flex_container");
+    flex_container = document.getElementById("flex_container");
     
     //// card box//////
     card_container = document.createElement("div");
@@ -25,7 +30,7 @@ function add(){
     id++;
     
 
-    let card_title  = document.createElement("h2");
+    card_title  = document.createElement("h2");
     card_title.textContent = textfield_value;
     
     
@@ -57,8 +62,6 @@ function add(){
     delbtn.classList.add("delbtn");
   
 
-
-
     // Appending the container div//
     flex_container.appendChild(card_container);
     card_container.appendChild(card_title);
@@ -70,28 +73,59 @@ function add(){
     card_container.appendChild(delbtn);
 
 
-
-
     addbtn.addEventListener("click",()=>{
         pop2.classList.remove("hide");
-       
     })
     
+
+    //////////****for deleting the card */
+
     delbtn.addEventListener("click",()=>{
         let card_remove = delbtn.parentElement.remove();
-        console.log(card_remove);
+        // console.log(card_remove);
     })
+
+
+    ///////// for Accessing the single card ********************////////
+    let card_heading = document.getElementById("card_heading");
+    let app = document.getElementById("app-container")  
+
+    card_title.addEventListener("click",()=>{
+
+        flex_container.style.visibility = "hidden";
+        app.style.display = "none";
+        card_heading.innerHTML = textfield_value;
+        
+        // let backbtn = document.createElement("div");
+       
+
+        // backbtn.appendChild(back);
+
+
+        
+    
+    })
+
+
+
+
+
 }
 
 
-////////////////////*************************************************/
+////////////////////***********************************************/
 
+let blur = document.getElementById("blur");
 addOption.addEventListener("click",()=>{
     first_popup.classList.remove("hide");
+    blur.style.filter = "blur(3px)";
+    // flex_container.style.filter = "blur(3px)";
 })
 
-function showpopup(){
+function hidepopup(){
     first_popup.classList.add("hide");
+    blur.style.filter = "blur(0px)";
+    // flex_container.style.filter = "blur(0px)";
 }
 
 ////////*************************************************************/
@@ -126,12 +160,16 @@ function additem()
     todo_tasks.appendChild(spantag);
     
 
+////////// ****** mark done *****************////////
 
     spantag.addEventListener("click",()=>{
         spantag.style.display = "none"
         todo_tasks.style.textDecoration = "line-through"
+        todo_tasks.style.color = "red"
     })
 }
+
+
 
 
 

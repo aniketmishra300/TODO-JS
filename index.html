@@ -8,27 +8,34 @@
 </head>
 <body>
    
-    <div id="blur" class="blur">
+    
 
-    <div class="app-container">
+    <div class="app-container" id="app-container">
         <div class="topBar">
+    <div id="blur" class="blur">
           <h1>Task Lists</h1>
+    </div>
           <p id="add-option" class="add-option">
             <span class="plus"> ➕ </span>
             Add Item
           </p>
         </div>
     </div>
-</div>
-        <div id="flex_container" class="flex_container"></div>
 
+    <h2 id="back_btn">back</h2>
+
+    <h1 id="card_heading"></h1>
+
+
+    <div id="flex_container" class="flex_container blur"></div>
+   
 
 
     <div id="first_popup" class="first_popup hide">
         <h3 class="new-list">Add New List</h3>
         <input type="text" placeholder="Add New List" id="textfield" class="textfield" >
         <span><button class="firstbtn" onclick="add()">Add</button>
-            <button class="firstbtn" onclick="showpopup()">Close</button>
+            <button class="firstbtn" onclick="hidepopup()">Close</button>
         </span>
     </div>
 
@@ -40,7 +47,6 @@
             <button class="firstbtn" onclick="showpopup2()">Close</button>
         </span>
     </div>
-
     
    
     
