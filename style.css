@@ -81,7 +81,7 @@ input{
 
 .hide
 {
-    visibility: hidden;
+    visibility:hidden;
 }
 
 /* .show
@@ -170,7 +170,7 @@ hr{
 #card_heading{
     position: relative;
     top: 80px;
-    left: 450px;
+    left: 40vw;
     font-size: 40px;
     width: 250px;
     display: inline;
@@ -183,4 +183,13 @@ hr{
     border-radius: 8px;
     padding: 2px;
     margin: 5px;
+}
+
+#back{
+    position: relative;
+    left: 15vw;
+    top: 5vh;
+    padding: 5px;
+    font-size: 25px;
+    border-radius: 10px;
 }
