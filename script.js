@@ -3,10 +3,6 @@ let first_popup = document.getElementById("first_popup");
 let addOption = document.getElementById("add-option");
 // let blurdiv = document.getElementById("blur");
 
-// let back = document.createElement("h2")
-// back.innerHTML = "Back";
-// back.style.color = "red"
-// console.log(back)
 
 
 let id=1;
@@ -14,10 +10,12 @@ let card_items , card_container , textfield_value,
 delbtn , cardremove,span,card_title , flex_container, app
 ,back,card_heading;
 
+
+
+
 function add(){
     hidepopup()
-    
-    
+       
     let textfield = document.getElementById("textfield")
     textfield_value = textfield.value;
     // textfield.textContent = "";
@@ -25,6 +23,7 @@ function add(){
     flex_container = document.getElementById("flex_container");
     
     //// card box//////
+    
     card_container = document.createElement("div");
     card_container.classList.add("card_container");
     card_container.setAttribute("id", `card${id}`);
@@ -72,7 +71,7 @@ function add(){
     list_items.appendChild(span);
     card_container.appendChild(addbtn);
     card_container.appendChild(delbtn);
-
+    
 
     addbtn.addEventListener("click",()=>{
         pop2.classList.remove("hide");
@@ -92,19 +91,21 @@ function add(){
     app = document.getElementById("app-container");
     back = document.getElementById("back");
     
+
+    /////////single card heading active********
+
     card_title.addEventListener("click",()=>{
         
         flex_container.style.visibility = "hidden";
         app.style.visibility = "hidden";
         card_heading.innerHTML = textfield_value;
-        
-        
+        // console.log(card_heading[0])
         back.style.visibility = "visible";
 
         // backbtn.appendChild(back);   
     })
 
-
+    
 }
 
 
@@ -179,5 +180,3 @@ function additem()
 
     
 
-
-    
