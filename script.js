@@ -5,13 +5,15 @@ let addOption = document.getElementById("add-option");
 
 
 
-let id=1;
+let id=1 , id2=1;
 let card_items , card_container , textfield_value, 
 delbtn , cardremove,span,card_title , flex_container, app
-,back,card_heading;
+,back,card_heading,single;
 
 
-
+////////////////first function start **************////////////
+/////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////
 
 function add(){
     hidepopup()
@@ -20,6 +22,9 @@ function add(){
     textfield_value = textfield.value;
     // textfield.textContent = "";
     
+    single=document.getElementById("single");
+    single.style.visibility = "hidden";
+
     flex_container = document.getElementById("flex_container");
     
     //// card box//////
@@ -60,6 +65,8 @@ function add(){
     delbtn = document.createElement("button");
     delbtn.innerHTML ="🥡";
     delbtn.classList.add("delbtn");
+   delbtn.setAttribute("id", `card${id2}`);
+    id2++;
   
 
     // Appending the container div//
@@ -81,7 +88,12 @@ function add(){
     //////////****for deleting the card */
 
     delbtn.addEventListener("click",()=>{
-        let card_remove = delbtn.parentElement.remove();
+        if(id === id2)
+        {
+            let card_remove = delbtn.parentElement.remove();
+
+        }
+
         // console.log(card_remove);
     })
 
@@ -94,6 +106,8 @@ function add(){
 
     /////////single card heading active********
 
+    let ab;
+
     card_title.addEventListener("click",()=>{
         
         flex_container.style.visibility = "hidden";
@@ -101,20 +115,33 @@ function add(){
         card_heading.innerHTML = textfield_value;
         // console.log(card_heading[0])
         back.style.visibility = "visible";
+        single.style.visibility = "visible";
 
-        // backbtn.appendChild(back);   
+
+        let create1 = document.createElement("div");
+        ab= document.getElementsByClassName("card_container");
+        
+        single.appendChild(create1);
+        create1.appendChild(ab[0]);
     })
 
     
 }
+
+////////////////first function ends **************////////////
+/////////////////////////////////////////////////////////////
+
 
 
 function backbtn(){
     flex_container.style.visibility = "visible";
     app.style.visibility = "visible";
     back.style.visibility = "hidden";
+    // ab.style.visibility = "hidden";
     card_heading.innerHTML = "";
+    
 }
+
 ////////////////////***********************************************/
 
 let blur = document.getElementById("blur");
@@ -169,6 +196,9 @@ function additem()
         todo_tasks.style.textDecoration = "line-through"
         todo_tasks.style.color = "red"
     })
+
+
+
 }
 
 

@@ -167,6 +167,16 @@ hr{
     left: 40px;
 }
 
+.single
+{
+    position: relative;
+    top: 150px;
+    left: 400px;
+    width: 200px;
+    height: 250px;
+
+}
+
 #card_heading{
     position: relative;
     top: 80px;
