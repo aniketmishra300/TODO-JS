@@ -170,19 +170,21 @@ hr{
 .single
 {
     position: relative;
-    top: 150px;
-    left: 100px;
-    min-width: 300px; 
+    top: 250px;
+    left: 600px;
+    width: 300px; 
     height: 250px;
+    /* display: inline; */
 
 }
 
 #card_heading{
     position: relative;
-    bottom: 200px;
+    bottom: 120px;
     left: 42vw;
     font-size: 40px;
     width: 250px;
+    color: white;
     display: inline;
 }
 
@@ -198,7 +200,7 @@ hr{
 #back{
     position: relative;
     left: 15vw;
-    top: 5vh;
+    top: -25vh;
     height: 50px;
     width: 100px;
     padding: 5px;

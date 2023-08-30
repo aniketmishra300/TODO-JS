@@ -1,14 +1,19 @@
 
 let first_popup = document.getElementById("first_popup");
 let addOption = document.getElementById("add-option");
-// let blurdiv = document.getElementById("blur");
+let create1 = document.getElementById("single");
+let body = document.querySelector("body")      
+let flex_container = document.getElementsByClassName("flex_container");
+let card_heading = document.getElementById("card_heading");
+let app = document.getElementById("app-container");
+let back = document.getElementById("back");
+let addtask = document.getElementById("add");
 
 
+let selectedcard = false;
 
-// let id=0,id2=0,id3 = 0 ;
-let card_container , textfield_value,app,
-cardremove,span , flex_container
-,back,single,addbtn;
+
+let textfield_value,cardremove,single,addbtn;
 
 
 ////////////////first function start ************** ////////////
@@ -21,18 +26,14 @@ function add(){
     let textfield = document.getElementById("textfield");
     textfield_value = textfield.value;
     // textfield.textContent = "";
+    addtask.style.display = "block";
     
-    // single=document.getElementById("single");
-    // single.style.visibility = "hidden";
-
-    flex_container = document.getElementsByClassName("flex_container");
     
     //// card box //////
     
-    card_container = document.createElement("div");
+   let card_container = document.createElement("div");
     card_container.classList.add("card_container");
-    // card_container.setAttribute("id", id);
-    // id++;
+   
     
 
     let card_title  = document.createElement("h2");
@@ -43,11 +44,8 @@ function add(){
     
     
     let card_items = document.createElement("div");
-    // card_items.setAttribute("id",id2)
-    // id2++;
     card_items.classList.add("card_items");
-    // card_items.setAttribute("id",id3);
-    // ++id3;
+    
 
     
 
@@ -55,9 +53,7 @@ function add(){
     // list_items.classList.add("list_items");
 
 
-    span = document.createElement("span");
-    // span.innerHTML = ""
-    // list_items.innerHTML = textfield2;
+    // let span = document.createElement("span");
 
 
 
@@ -65,26 +61,20 @@ function add(){
     addbtn.innerHTML = "➕";
     addbtn.classList.add("addbtn");
     
-//    abc = addbtn.setAttribute("id",id2)
-//     ++id2;
-    
+
     
     let delbtn = document.createElement("button");
     delbtn.innerHTML ="🥡";
     delbtn.classList.add("delbtn");
-//    delbtn.setAttribute("id", `card${id2}`);
-    // id2++;
+
   
 
     // Appending the container div//
-    // arr.appendChild(flex_container);
 
     flex_container[0].appendChild(card_container);
     card_container.appendChild(card_title);
     card_container.appendChild(horiz);
     card_container.appendChild(card_items);
-    // card_items.appendChild(list_items);
-    // list_items.appendChild(span);
     card_container.appendChild(addbtn);
     card_container.appendChild(delbtn);
     
@@ -92,7 +82,6 @@ function add(){
 
     
     addbtn.addEventListener("click",()=>{
-        // pop2.classList.remove("hide");
         
         createitem(card_items);
         
@@ -125,8 +114,6 @@ function add(){
         let Add2 = document.createElement("button");
         Add2.classList.add("firstbtn", "add");
         Add2.innerText = "Add";
-       // Add2.setAttribute("id",id3)
-       //id3++;
 
     
         let close2 = document.createElement("button");
@@ -153,11 +140,8 @@ function add(){
                     pop2.style.display = "none";
                   //   pop2.remove();
                     var markdone = document.createElement("button");
-                    // let itemadd = document.getElementById(`card${id2}`)
-                    // card_items = document.getElementsByClassName("card_items");
-                    // Add2 = document.getElementsByClassName("add");
-                            
-                        card_items.appendChild(p);                         
+
+                    card_items.appendChild(p);                         
                     console.log(card_items)
 
                   markdone.innerText = "Mark Done";
@@ -192,44 +176,69 @@ function add(){
     //////////****for deleting the card */
 
     delbtn.addEventListener("click",()=>{
-        
+      // console.log("deleting")
         delbtn.parentElement.remove();
-        // console.log(card_remove);
     })
 
 
-    ///////// for Accessing the single card ********************/////
-   let card_heading = document.getElementById("card_heading");
-    app = document.getElementById("app-container");
-    back = document.getElementById("back");
-    let create1 = document.getElementById("single");
-    
-
+    ///////// for Accessing the single card ********************/////    
     /////////single card heading active********
-
-
+    let back = document.createElement("button")
+    back.innerHTML = "Back";
+    back.setAttribute("id","back")
+    back.classList.add("hide")
+    body.appendChild(back)
+    
+    
     card_title.addEventListener("click",()=>{
+        
+        selectedcard = true;
+        
+        // addtask.style.display = "none";
 
-        let body = document.querySelector("body")      
-        create1.classList.add("single");
-        body.appendChild(create1)
-        create1.appendChild(card_container);
-
-        card_heading.innerHTML = textfield_value;
-        card_heading.setAttribute("id","card_heading")
         card_heading.style.visibility = "visible";
-        body.appendChild(card_heading)
-
-
+        card_heading.innerHTML = card_title.textContent;
+        
+        
         flex_container[0].style.visibility = "hidden";
         app.style.visibility = "hidden";
-
+        
         back.style.visibility = "visible";
         create1.style.visibility = "visible";
         
-       
+        //  console.log(card_title)
+        let card2 = card_container.cloneNode(true);
+        create1.appendChild(card2);
+
+        // card2.lastElementChild.addEventListener("click",()=>{
+        //   card2.remove();
+        // })
 
     })
+
+
+////////////////////back button /*////////////////////////
+
+
+    back.addEventListener("click",()=>{
+      backbtn()
+    })
+    
+function backbtn(){  
+    flex_container[0].style.visibility = "visible";
+    app.style.visibility = "visible";
+    back.style.visibility = "hidden";
+    create1.style.visibility = "hidden";
+    card_heading.style.visibility = "hidden";
+
+    create1.innerText="";
+
+    selectedcard = false;
+
+    // flex_container[0].appendChild(card_container);
+    // console.log(flex_container[0].innerHTML)
+}
+
 
     
 }
@@ -239,19 +248,6 @@ function add(){
 ////////////////first function ends **************////////////
 /////////////////////////////////////////////////////////////
 
-
-function backbtn(){
-    let create1 = document.getElementById("single");
-    
-    flex_container[0].style.visibility = "visible";
-    app.style.visibility = "visible";
-    back.style.visibility = "hidden";
-    create1.style.visibility = "hidden";
-    card_heading.style.visibility = "hidden";
-
-    flex_container[0].appendChild(card_container);
-
-}
 
 ////////////////////***********************************************/
 
