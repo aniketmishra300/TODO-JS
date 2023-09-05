@@ -7,29 +7,39 @@ let flex_container = document.getElementsByClassName("flex_container");
 let card_heading = document.getElementById("card_heading");
 let app = document.getElementById("app-container");
 let back = document.getElementById("back");
-let addtask = document.getElementById("add");
+let addtask = document.getElementById("plus");
+let noItem = document.getElementById("noItem");
 
 
 let selectedcard = false;
 
 
-let textfield_value,cardremove,single,addbtn;
+let textfield_value,cardremove,single;
 
 
 ////////////////first function start ************** ////////////
 ///////////////////////////////////////////////////////////////
 
 function add(){
+  
+  hidepopup();
 
-    hidepopup();
+  //  if(selectedcard)
+  // {
+  //   backbtn()
+  //   selectedcard = false;
+  // }
+ 
+  let textfield = document.getElementById("textfield");
+  textfield_value = textfield.value;
+  textfield.value = "";
 
-    let textfield = document.getElementById("textfield");
-    textfield_value = textfield.value;
-    // textfield.textContent = "";
-    addtask.style.display = "block";
+  
+  addtask.style.visibility = "visible";
+
+  noItem.classList.add('hide')
     
-    
-    //// card box //////
+    //// card box ///////////////////////////////////////////////////////
     
    let card_container = document.createElement("div");
     card_container.classList.add("card_container");
@@ -47,17 +57,8 @@ function add(){
     card_items.classList.add("card_items");
     
 
-    
 
-    // let list_items = document.createElement("p");
-    // list_items.classList.add("list_items");
-
-
-    // let span = document.createElement("span");
-
-
-
-    addbtn = document.createElement("button");
+   let addbtn = document.createElement("button");
     addbtn.innerHTML = "➕";
     addbtn.classList.add("addbtn");
     
@@ -66,7 +67,7 @@ function add(){
     let delbtn = document.createElement("button");
     delbtn.innerHTML ="🥡";
     delbtn.classList.add("delbtn");
-
+///////////////////////////////////////////////////////////////////////////////
   
 
     // Appending the container div//
@@ -77,7 +78,6 @@ function add(){
     card_container.appendChild(card_items);
     card_container.appendChild(addbtn);
     card_container.appendChild(delbtn);
-    
 
 
     
@@ -91,7 +91,7 @@ function add(){
 
         var tittle2 = document.createElement("h3");
         tittle2.classList.add("new-list");
-        card_items.appendChild(tittle2);
+        // card_items.appendChild(tittle2);
 
         let body = document.querySelector("body");
 
@@ -130,54 +130,82 @@ function add(){
        
     
     
-        // Add2  = document.getElementsByClassName("add")
         //////////*********** Add button */
          
-           Add2.addEventListener("click", () => {              
-                    const p = document.createElement("p");
-                    p.classList.add("inline");
-                    tittle2.innerText = input3.value;
-                    pop2.style.display = "none";
-                  //   pop2.remove();
-                    var markdone = document.createElement("button");
 
-                    card_items.appendChild(p);                         
-                    console.log(card_items)
-
-                  markdone.innerText = "Mark Done";
-                  p.appendChild(tittle2);
-                  p.appendChild(markdone);
-                  markdone.classList.add("Mark_done");
-    
-    
-              markdone.addEventListener("click", () => {
-                Done();
-              });
-    
-              function Done() {
-                tittle2.style.textDecoration = "line-through";
-                tittle2.style.color = "black";
-                tittle2.style.fontWeight = "bolder";
-                markdone.remove();
-              }
+          Add2.addEventListener("click", () => {              
+                    AddItem(card_items,input3,pop2)
             });
-          
-            //////////*********** close button */
+
+            
+        //////////*********** close button */
+
             close2.addEventListener("click",()=>{
-               pop2.style.display = "none"
-             })
+              pop2.style.display = "none"
+            })
+          
 
     }
-
     
+    function AddItem(item,input3,pop2)
+    {
+      
 
-   
+      const p = document.createElement("div");
+      let text=document.createElement('span')
+            p.classList.add("inline");
+            text.innerText = input3.value;
+            pop2.remove()
+            
+            var markdone = document.createElement("button");
+            markdone.innerText = "Mark Done";
 
+            markdone.addEventListener("click", () => {
+              Done();
+            });
+
+
+            p.appendChild(text);
+            p.appendChild(markdone);
+            markdone.classList.add("Mark_done");
+           
+            // console.log(item)
+            if(selectedcard)
+            {
+              var cloneitem = p.cloneNode(true)
+                card_items.appendChild(cloneitem)
+            }                     
+            item.appendChild(p);    
+            // console.log(card_items)
+
+      function Done() {
+        text.style.textDecoration = "line-through";
+        text.style.color = "black";
+        text.style.fontWeight = "bolder";
+        markdone.remove();
+
+        if(selectedcard)
+        {
+          cloneitem.firstElementChild.style.textDecoration = "line-through";
+          cloneitem.firstElementChild.style.color = "black";
+          cloneitem.firstElementChild.style.fontWeight = "bolder";
+          cloneitem.firstElementChild.nextSibling.remove()
+        }      
+      }  
+    }
+  
+    
     //////////****for deleting the card */
-
+    
     delbtn.addEventListener("click",()=>{
       // console.log("deleting")
-        delbtn.parentElement.remove();
+      delbtn.parentElement.remove();
+      
+      let abc = flex_container.innerHTML===""
+      if(abc===false)
+        noItem.classList.remove('hide');
+      
+      console.log(flex_container.innerHTML === '')
     })
 
 
@@ -193,8 +221,8 @@ function add(){
     card_title.addEventListener("click",()=>{
         
         selectedcard = true;
-        
-        // addtask.style.display = "none";
+        // addtask.style.visibility = "hidden";
+      
 
         card_heading.style.visibility = "visible";
         card_heading.innerHTML = card_title.textContent;
@@ -210,46 +238,42 @@ function add(){
         let card2 = card_container.cloneNode(true);
         create1.appendChild(card2);
 
-        // card2.lastElementChild.addEventListener("click",()=>{
-        //   card2.remove();
-        // })
+        card2.lastElementChild.addEventListener("click",()=>{
+          card2.remove();
+          card_container.remove();
+        })
+
+        card2.lastElementChild.previousSibling.addEventListener("click", () => {              
+            createitem(card2.lastElementChild.previousSibling.previousSibling);
+            // console.log(card2.lastElementChild.previousSibling.previousSibling)
+        });
 
     })
 
 
 ////////////////////back button /*////////////////////////
 
+back.addEventListener("click",()=>{
+  backbtn(back)
+})
 
-    back.addEventListener("click",()=>{
-      backbtn()
-    })
-    
-function backbtn(){  
-    flex_container[0].style.visibility = "visible";
-    app.style.visibility = "visible";
-    back.style.visibility = "hidden";
-    create1.style.visibility = "hidden";
-    card_heading.style.visibility = "hidden";
+function backbtn(back){  
+  flex_container[0].style.visibility = "visible";
+  app.style.visibility = "visible";
+  back.style.visibility = "hidden";
+  create1.style.visibility = "hidden";
+  card_heading.style.visibility = "hidden";
+  
+  create1.innerText="";
+  selectedcard = false;
+  
+  }
 
-    create1.innerText="";
-
-    selectedcard = false;
-
-    // flex_container[0].appendChild(card_container);
-    // console.log(flex_container[0].innerHTML)
 }
-
-
-    
-}
-
-
 
 ////////////////first function ends **************////////////
 /////////////////////////////////////////////////////////////
 
-
-////////////////////***********************************************/
 
 let blur = document.getElementById("blur");
 addOption.addEventListener("click",()=>{
@@ -261,19 +285,7 @@ addOption.addEventListener("click",()=>{
 function hidepopup(){
     first_popup.classList.add("hide");
     blur.style.filter = "blur(0px)";
-
+    textfield_value = "";
     
 }
-
-
-
-
-
-
-
-
-
-
-
-    
-
+ 
